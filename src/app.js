@@ -124,8 +124,11 @@ var ViewModel = function () {
 
       // add mouseover effect on entry-marker
       google.maps.event.addDomListener(document.getElementById(place.id), 'mouseover', function () {
-        place.marker.setAnimation(google.maps.Animation.BOUNCE)
-        setTimeout(function(){ place.marker.setAnimation(null) }, 500)
+        place.marker.setIcon('http://maps.gstatic.com/mapfiles/markers2/icon_green.png')
+      })
+      // add mouseover effect on entry-marker
+      google.maps.event.addDomListener(document.getElementById(place.id), 'mouseout', function () {
+        place.marker.setIcon('http://maps.gstatic.com/mapfiles/markers2/marker.png')
       })
 
       // add click effect on entry-marker
