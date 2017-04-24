@@ -1,0 +1,74 @@
+html {
+  font-family: 'Open Sans', sans-serif;
+  height: 100vh;
+}
+
+.index-container {
+  display: flex;
+}
+
+nav {
+  display: block;
+}
+
+.sidebar {
+  background-color: #2F3D4A;
+  display: block;
+  min-width: 22.85rem;
+  width: 100%;
+  height: auto;
+}
+
+.sidebar button {
+  background-color: teal;
+}
+
+.sidebar ul {
+  list-style-type: none;
+}
+
+.sidebar ul li {
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 2em;
+  padding: 1em;
+}
+
+.sidebar ul li:hover {
+  cursor:pointer;
+  color: #02b3e4;
+}
+
+.sidebar ul li.active {
+  color: white;
+}
+
+.map-container {
+  flex-grow: 1;
+}
+
+#map {
+  font-size: 1.35rem;
+  height: 100%;
+  line-height: 1.5em;
+  min-width: 375px;
+  width: 100%;
+}
+
+@media screen and (max-width: 750px){
+  .index-container {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .map-container {
+    -webkit-order: -1;
+    order: -1;
+    height: 40vh;
+  }
+
+  nav {
+    width: 100vw;
+    height: 60vh;
+    overflow-y: scroll;
+  }
+}

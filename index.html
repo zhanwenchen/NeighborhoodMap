@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>NeighborhoodMap</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+  <div class="index-container">
+    <nav class="sidebar-container">
+      <div class="sidebar">
+        <div id="search">
+          <form data-bind="submit: search">
+            <input id="search-address" type="text" placeholder="1600 Amphitheatre Pkwy, Mountain View, CA 94043" data-bind="value: addressEntered"></input>
+            <button type="submit">Show Places</button>
+          </form>
+          <input id="filter" placeholder="filter" data-bind="value: filter, valueUpdate: 'afterkeydown'"></input>
+        </div>
+        <ul>
+          <!-- ko foreach: filteredItems -->
+          <li data-bind="text: name, attr: { id: id }"></li>
+          <!-- /ko -->
+        </ul>
+      </div>
+    </nav>
+
+    <div class="map-container">
+      <div id="map">
+      </div>
+    </div>
+  </div>
+
+  <script src="./dist/neighborhood_map.bundle.js"></script>
+
+  <script async defer onerror="handleScriptError()"
+      src=
+      "https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyAFaXWVMcKieyLH8Np7bvwPx7_hJHI_CIg&v=3&callback=initMap">
+  </script>
+</body>
+</html>

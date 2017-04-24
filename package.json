@@ -1,0 +1,30 @@
+{
+  "name": "neighborhoodmap",
+  "version": "1.0.0",
+  "description": "A web app to look up points of interest near a location",
+  "main": "entry.js",
+  "scripts": {
+    "start": "webpack --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhanwenchen/NeighborhoodMap.git"
+  },
+  "author": "Zhanwen Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhanwenchen/NeighborhoodMap/issues"
+  },
+  "homepage": "https://github.com/zhanwenchen/NeighborhoodMap#readme",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.4.0",
+    "webpack": "^2.4.1"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "knockout": "^3.4.2"
+  }
+}
