@@ -1,13 +1,16 @@
 //TODO:
 // 1. hamburger with a "navbar"?
 
-var $ = require('jquery')
-var ko = require('knockout')
+const $ = require('jquery')
+const ko = require('knockout')
 
 var Poi = function (data) {
   this.id = ko.observable(data.id)
   this.name = ko.observable(data.name)
   this.marker = ko.observable(data.marker)
+  this.clickEntry = ( (dataCopy) =>
+    (data, event) => {google.maps.event.trigger(dataCopy.marker, 'click')}
+  )(data) // cache data at the time of Poi creation
 }
 
 var ViewModel = function () {
@@ -38,6 +41,8 @@ var ViewModel = function () {
   self.filteredMarkers = ko.computed(function () {
     var entries = self.filteredItems()
   })
+
+  // Google Maps Logic
 
   var geocoder, map, infoWindow
 
@@ -124,23 +129,13 @@ var ViewModel = function () {
 
       // add mouseover effect on entry-marker
       google.maps.event.addDomListener(document.getElementById(place.id), 'mouseover', function () {
+        place.marker.setAnimation(3)
         place.marker.setIcon('http://maps.gstatic.com/mapfiles/markers2/icon_green.png')
       })
       // add mouseover effect on entry-marker
       google.maps.event.addDomListener(document.getElementById(place.id), 'mouseout', function () {
+        place.marker.setAnimation(4)
         place.marker.setIcon('http://maps.gstatic.com/mapfiles/markers2/marker.png')
-      })
-
-      // add click effect on entry-marker
-      var entry = document.getElementById(place.id)
-      google.maps.event.addDomListener(entry, 'click', function () {
-
-        google.maps.event.trigger(place.marker, 'click');
-
-        // toggle text highlighting (white)
-        entries = document.querySelectorAll('.active');
-        if(entries.length) entries[0].className = ''
-        entry.className = 'active'
       })
     })
   }
@@ -162,7 +157,7 @@ var ViewModel = function () {
 }
 
 // my is the exposed variable that can be accessed from the html
-my = { viewModel: new ViewModel() };
+my = { viewModel: new ViewModel() }
 ko.applyBindings(my.viewModel);
 window.initMap = my.viewModel.initMap;
 window.handleScriptError = function (error) {

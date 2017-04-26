@@ -19,7 +19,7 @@
         </div>
         <ul>
           <!-- ko foreach: filteredItems -->
-          <li data-bind="text: name, attr: { id: id }"></li>
+          <li data-bind="text: name, attr: { id: id }, click: clickEntry"></li>
           <!-- /ko -->
         </ul>
       </div>
