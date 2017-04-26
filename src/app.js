@@ -28,7 +28,11 @@ var ViewModel = function () {
   self.filteredItems = ko.computed(function() {
     var filter = self.filter().toLowerCase()
     if (!filter) {
-      return self.poiList()
+      //reset all markers
+      return self.poiList().map((item) => {
+        item.marker().setVisible(true)
+        return item
+      })
     } else {
       return ko.utils.arrayFilter(self.poiList(), function(item) {
         var foundItem = ko.utils.stringStartsWith(item.name().toLowerCase(), filter)
