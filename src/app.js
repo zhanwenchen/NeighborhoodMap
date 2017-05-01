@@ -1,6 +1,3 @@
-//TODO:
-// 1. hamburger with a "navbar"?
-
 const $ = require('jquery')
 const ko = require('knockout')
 
@@ -82,7 +79,7 @@ var ViewModel = function () {
       }, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
             var pos = results[0].geometry.location
-            makeMap(pos)
+            self.makeMap(pos)
           } else {
             alert('Google Maps could not determine your location at this time')
           }
@@ -104,9 +101,9 @@ var ViewModel = function () {
   }
 
   self.setInfoWindow = function (content, pos, map) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent('Your location.');
-    infoWindow.open(map);
+    infoWindow.setPosition(pos)
+    infoWindow.setContent('Your location.')
+    infoWindow.open(map)
   }
 
   self.getPlaces = function (pos) {
@@ -131,16 +128,16 @@ var ViewModel = function () {
       place.marker = marker
       self.poiList.push(new Poi(place))
 
-      // add mouseover effect on entry-marker
-      google.maps.event.addDomListener(document.getElementById(place.id), 'mouseover', function () {
-        place.marker.setAnimation(3)
-        place.marker.setIcon('http://maps.gstatic.com/mapfiles/markers2/icon_green.png')
-      })
-      // add mouseover effect on entry-marker
-      google.maps.event.addDomListener(document.getElementById(place.id), 'mouseout', function () {
-        place.marker.setAnimation(4)
-        place.marker.setIcon('http://maps.gstatic.com/mapfiles/markers2/marker.png')
-      })
+      // // add mouseover effect on entry-marker
+      // google.maps.event.addDomListener(document.getElementById(place.id), 'mouseover', function () {
+      //   place.marker.setAnimation(3)
+      //   place.marker.setIcon('http://maps.gstatic.com/mapfiles/markers2/icon_green.png')
+      // })
+      // // add mouseover effect on entry-marker
+      // google.maps.event.addDomListener(document.getElementById(place.id), 'mouseout', function () {
+      //   place.marker.setAnimation(4)
+      //   place.marker.setIcon('http://maps.gstatic.com/mapfiles/markers2/marker.png')
+      // })
     })
   }
 
@@ -152,8 +149,10 @@ var ViewModel = function () {
 
       google.maps.event.addListener(marker, 'click', function() {
         var contentString = `<h2>${place.name}</h1>\n<h4>${place.categories[0].name}</h4>\n<p>${place.location.formattedAddress}</h3>`
-        infoWindow.setContent(contentString);
-        infoWindow.open(map, this);
+        infoWindow.setContent(contentString)
+        infoWindow.open(map, this)
+        place.marker.setAnimation(google.maps.Animation.BOUNCE)
+        setTimeout(() => { marker.setAnimation(null)}, 750)
       });
 
       return marker;
